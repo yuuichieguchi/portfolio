@@ -5,19 +5,36 @@ import { About } from '@/components/About/About';
 import { Projects } from '@/components/Projects/Projects';
 import { CTA } from '@/components/CTA/CTA';
 import Chat from '@/components/Chat';
+import { BlobAnimation } from '@/components/Hero/BlobAnimation';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 
 export default function Home() {
   return (
     <>
-      <Hero />
-      <About />
-      <Projects />
-      <section id="chat">
-        <Chat apiUrl={API_URL} />
-      </section>
-      <CTA />
+      <div style={{ position: 'relative', minHeight: '300vh' }}>
+        {/* Background blobs container spanning Hero, About, Projects, and Chat */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            overflow: 'hidden',
+            zIndex: -1,
+            pointerEvents: 'none',
+          }}
+        >
+          <BlobAnimation variant="primary" size="large" duration={8} />
+          <BlobAnimation variant="secondary" size="medium" duration={10} delay={2} />
+          <BlobAnimation variant="tertiary" size="small" duration={12} delay={4} />
+        </div>
+        <Hero />
+        <About />
+        <Projects />
+        <section id="chat">
+          <Chat apiUrl={API_URL} />
+        </section>
+        <CTA />
+      </div>
     </>
   );
 }

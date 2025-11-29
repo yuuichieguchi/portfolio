@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
-import { BlobAnimation } from './BlobAnimation';
 import styles from './Hero.module.css';
 
 export function Hero() {
@@ -33,13 +32,6 @@ export function Hero() {
 
   return (
     <section className={styles.hero} ref={ref}>
-      {/* Background blobs */}
-      <div className={styles.blobContainer}>
-        <BlobAnimation variant="primary" size="large" duration={8} />
-        <BlobAnimation variant="secondary" size="medium" duration={10} delay={2} />
-        <BlobAnimation variant="tertiary" size="small" duration={12} delay={4} />
-      </div>
-
       {/* Hero content */}
       <motion.div
         className={styles.heroContent}

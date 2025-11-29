@@ -130,7 +130,7 @@
 }
 
 .skillList li {
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--text-secondary);
   padding-left: var(--spacing-lg);
   position: relative;
