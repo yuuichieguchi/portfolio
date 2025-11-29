@@ -146,8 +146,9 @@
   .nav {
     order: 3;
     flex: 1;
-    justify-content: space-around;
+    justify-content: center;
     gap: var(--spacing-md);
+    margin-right: var(--spacing-md);
   }
 
   .themeToggle {
