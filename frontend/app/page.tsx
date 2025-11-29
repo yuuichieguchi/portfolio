@@ -1,5 +1,6 @@
 'use client';
 
+import { Hero } from '@/components/Hero/Hero';
 import Chat from '@/components/Chat';
 import styles from './page.module.css';
 
@@ -9,21 +10,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className={styles.hero}>
-        <div className={styles.heroContent}>
-          <p className={styles.subtitle}>
-            Building robust, scalable web applications with modern technologies
-          </p>
-          <div className={styles.heroButtons}>
-            <a href="#projects" className={styles.buttonPrimary}>
-              View Projects
-            </a>
-            <a href="#chat" className={styles.buttonSecondary}>
-              Try Live Demo
-            </a>
-          </div>
-        </div>
-      </section>
+      <Hero />
 
       {/* About Section */}
       <section id="about" className={styles.about}>
