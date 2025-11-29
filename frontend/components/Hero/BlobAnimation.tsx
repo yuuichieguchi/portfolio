@@ -8,6 +8,9 @@ interface BlobProps {
   duration?: number;
   variant?: 'primary' | 'secondary' | 'tertiary';
   size?: 'small' | 'medium' | 'large';
+  top?: string;
+  right?: string;
+  left?: string;
 }
 
 const getBlobGradient = (variant: 'primary' | 'secondary' | 'tertiary') => {
@@ -41,6 +44,9 @@ export function BlobAnimation({
   duration = 8,
   variant = 'primary',
   size = 'medium',
+  top,
+  right,
+  left,
 }: BlobProps) {
   const blobVariants = {
     animate: {
@@ -73,6 +79,9 @@ export function BlobAnimation({
         borderRadius: '40%',
         willChange: 'transform',
         opacity: 0.6,
+        ...(top && { top }),
+        ...(right && { right }),
+        ...(left && { left }),
       }}
     />
   );

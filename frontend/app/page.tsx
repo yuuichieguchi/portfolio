@@ -25,9 +25,9 @@ export default function Home() {
           pointerEvents: 'none',
         }}
       >
-        <BlobAnimation variant="primary" size="large" duration={8} />
-        <BlobAnimation variant="secondary" size="medium" duration={10} delay={2} />
-        <BlobAnimation variant="tertiary" size="small" duration={12} delay={4} />
+        <BlobAnimation variant="primary" size="large" duration={8} top="-20%" right="-10%" />
+        <BlobAnimation variant="secondary" size="medium" duration={10} delay={2} top="10%" right="-5%" />
+        <BlobAnimation variant="tertiary" size="small" duration={12} delay={4} top="30%" right="-15%" />
       </div>
       <div style={{ position: 'relative', minHeight: '300vh' }}>
         <Hero />
