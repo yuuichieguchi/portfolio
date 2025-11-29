@@ -1,0 +1,88 @@
+/**
+ * Main layout component with header and footer.
+ */
+
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import styles from './Layout.module.css';
+
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+export default function Layout({ children }: LayoutProps) {
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+
+    // Get theme from localStorage or system preference
+    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
+    if (savedTheme) {
+      setTheme(savedTheme);
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    } else {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initialTheme = prefersDark ? 'dark' : 'light';
+      setTheme(initialTheme);
+      document.documentElement.setAttribute('data-theme', initialTheme);
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.setAttribute('data-theme', newTheme);
+  };
+
+  if (!mounted) {
+    return null;
+  }
+
+  return (
+    <div className={styles.layout}>
+      <header className={styles.header}>
+        <div className={styles.headerContent}>
+          <div className={styles.logo}>
+            <h1>Yuuichi Eguchi</h1>
+          </div>
+
+          <nav className={styles.nav}>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#chat">Chat</a>
+          </nav>
+
+          <button
+            className={styles.themeToggle}
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+          >
+            {theme === 'light' ? '🌙' : '☀️'}
+          </button>
+        </div>
+      </header>
+
+      <main className={styles.main}>
+        {children}
+      </main>
+
+      <footer className={styles.footer}>
+        <div className={styles.footerContent}>
+          <p>&copy; 2025 Yuuichi Eguchi | Developer Portfolio. Built with Next.js, FastAPI, and WebSocket Stabilizer.</p>
+          <div className={styles.footerLinks}>
+            <a href="https://github.com/yuuichieguchi" target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/yuuichieguchi/" target="_blank" rel="noopener noreferrer">
+              LinkedIn
+            </a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
