@@ -126,14 +126,34 @@
 /* Responsive design */
 @media (max-width: 768px) {
   .headerContent {
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     padding: var(--spacing-md);
+    gap: var(--spacing-md);
+  }
+
+  .logo {
+    position: static;
+    order: 1;
+    flex-shrink: 0;
+  }
+
+  .logo h1 {
+    font-size: 1.2rem;
   }
 
   .nav {
     order: 3;
-    width: 100%;
+    flex: 1;
     justify-content: space-around;
+    gap: var(--spacing-md);
+  }
+
+  .themeToggle {
+    position: static;
+    order: 2;
+    flex-shrink: 0;
   }
 
   .footerContent {
