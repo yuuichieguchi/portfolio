@@ -1,6 +1,5 @@
 'use client';
 
-import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { BlobAnimation } from './BlobAnimation';
