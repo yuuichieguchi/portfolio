@@ -29,7 +29,7 @@ export default function Home() {
         <BlobAnimation variant="secondary" size="medium" duration={10} delay={2} top="10%" right="-5%" />
         <BlobAnimation variant="tertiary" size="small" duration={12} delay={4} top="30%" right="-15%" />
       </div>
-      <div style={{ position: 'relative', minHeight: '300vh' }}>
+      <div style={{ position: 'relative' }}>
         <Hero />
         <About />
         <Projects />
