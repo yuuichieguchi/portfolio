@@ -15,8 +15,11 @@ export default function Home() {
       {/* Background blobs container spanning Hero, About, Projects, and Chat */}
       <div
         style={{
-          position: 'fixed',
-          inset: 0,
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '100vh',
           overflow: 'hidden',
           zIndex: -1,
           pointerEvents: 'none',
