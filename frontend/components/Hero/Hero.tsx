@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { BlobAnimation } from './BlobAnimation';
-import { MouseTracker } from './MouseTracker';
 import styles from './Hero.module.css';
 
 export function Hero() {
@@ -41,32 +40,30 @@ export function Hero() {
         <BlobAnimation variant="tertiary" size="small" duration={12} delay={4} />
       </div>
 
-      {/* Hero content with mouse tracking */}
-      <MouseTracker offset={15}>
-        <motion.div
-          className={styles.heroContent}
-          initial="hidden"
-          animate={isVisible ? 'visible' : 'hidden'}
-          variants={containerVariants}
-        >
-          <motion.p className={styles.subtitle} variants={itemVariants}>
-            Building robust, scalable web applications with modern technologies
-          </motion.p>
+      {/* Hero content */}
+      <motion.div
+        className={styles.heroContent}
+        initial="hidden"
+        animate={isVisible ? 'visible' : 'hidden'}
+        variants={containerVariants}
+      >
+        <p className={styles.subtitle}>
+          Building robust, scalable web applications with modern technologies
+        </p>
 
-          <motion.p className={styles.cta} variants={itemVariants}>
-            Let's create something amazing together
-          </motion.p>
+        <p className={styles.cta}>
+          Let's create something amazing together
+        </p>
 
-          <motion.div className={styles.heroButtons} variants={itemVariants}>
-            <a href="#projects" className={styles.buttonPrimary}>
-              View Projects
-            </a>
-            <a href="#chat" className={styles.buttonSecondary}>
-              Try Live Demo
-            </a>
-          </motion.div>
+        <motion.div className={styles.heroButtons} variants={itemVariants}>
+          <a href="#projects" className={styles.buttonPrimary}>
+            View Projects
+          </a>
+          <a href="#chat" className={styles.buttonSecondary}>
+            Try Live Demo
+          </a>
         </motion.div>
-      </MouseTracker>
+      </motion.div>
 
       {/* Scroll indicator */}
       <motion.div

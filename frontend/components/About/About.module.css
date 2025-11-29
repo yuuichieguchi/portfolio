@@ -3,7 +3,6 @@
 .about {
   position: relative;
   padding: var(--spacing-3xl) var(--spacing-lg);
-  background: var(--bg-section);
 }
 
 .sectionTitle {
@@ -73,7 +72,7 @@
 /* Skill Card */
 .skillCard {
   padding: var(--spacing-lg);
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--bg-section);
   border: 1px solid rgba(0, 217, 255, 0.2);
   border-radius: var(--radius-lg);
   transition: all var(--duration-normal) var(--ease-in-out);

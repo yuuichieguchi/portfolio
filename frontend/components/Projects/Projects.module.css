@@ -3,7 +3,6 @@
 .projects {
   position: relative;
   padding: var(--spacing-3xl) var(--spacing-lg);
-  background: var(--bg-section);
 }
 
 .sectionTitle {
@@ -30,7 +29,7 @@
   grid-template-columns: 1fr 300px;
   gap: var(--spacing-xl);
   padding: var(--spacing-2xl);
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--bg-section);
   border: 1px solid rgba(0, 217, 255, 0.15);
   border-radius: var(--radius-xl);
   margin-top: var(--spacing-2xl);
