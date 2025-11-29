@@ -12,21 +12,21 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 export default function Home() {
   return (
     <>
+      {/* Background blobs container spanning Hero, About, Projects, and Chat */}
+      <div
+        style={{
+          position: 'fixed',
+          inset: 0,
+          overflow: 'hidden',
+          zIndex: -1,
+          pointerEvents: 'none',
+        }}
+      >
+        <BlobAnimation variant="primary" size="large" duration={8} />
+        <BlobAnimation variant="secondary" size="medium" duration={10} delay={2} />
+        <BlobAnimation variant="tertiary" size="small" duration={12} delay={4} />
+      </div>
       <div style={{ position: 'relative', minHeight: '300vh' }}>
-        {/* Background blobs container spanning Hero, About, Projects, and Chat */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            overflow: 'hidden',
-            zIndex: -1,
-            pointerEvents: 'none',
-          }}
-        >
-          <BlobAnimation variant="primary" size="large" duration={8} />
-          <BlobAnimation variant="secondary" size="medium" duration={10} delay={2} />
-          <BlobAnimation variant="tertiary" size="small" duration={12} delay={4} />
-        </div>
         <Hero />
         <About />
         <Projects />
