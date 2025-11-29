@@ -3,7 +3,7 @@
 .projects {
   position: relative;
   padding: var(--spacing-3xl) var(--spacing-lg);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(245, 245, 245, 0.5) 100%);
+  background: var(--bg-primary);
 }
 
 .sectionTitle {

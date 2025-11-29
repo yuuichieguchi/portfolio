@@ -3,7 +3,7 @@
 .about {
   position: relative;
   padding: var(--spacing-3xl) var(--spacing-lg);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(245, 245, 245, 0.3) 100%);
+  background: var(--bg-primary);
 }
 
 .sectionTitle {
@@ -25,6 +25,24 @@
   grid-template-columns: 1fr 1fr;
   gap: var(--spacing-3xl);
   align-items: start;
+}
+
+/* Left column - Image and Text */
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.profileImage {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 3px solid var(--color-cyan);
+  object-fit: cover;
+  box-shadow: 0 0 30px rgba(0, 217, 255, 0.3);
+  animation: fadeInUp var(--duration-normal) var(--ease-out);
 }
 
 /* Left column - Text */

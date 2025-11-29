@@ -71,8 +71,14 @@ export function About() {
         animate={isVisible ? 'visible' : 'hidden'}
         variants={containerVariants}
       >
-        {/* Left column - Text */}
-        <motion.div className={styles.textContent} variants={itemVariants}>
+        {/* Left column - Profile Image and Text */}
+        <motion.div className={styles.leftColumn} variants={itemVariants}>
+          <img
+            src="https://github.com/yuuichieguchi.png"
+            alt="Yuuichi Eguchi"
+            className={styles.profileImage}
+          />
+          <motion.div className={styles.textContent}>
           <p>
             I'm a <span className={styles.highlight}>full-stack developer</span> passionate about creating
             reliable, maintainable software. With expertise in Python, TypeScript, and modern web frameworks,
@@ -88,6 +94,7 @@ export function About() {
             Whether it's building robust APIs or crafting intuitive user interfaces, I'm dedicated to delivering
             quality that makes a difference.
           </p>
+          </motion.div>
         </motion.div>
 
         {/* Right column - Skills Grid */}

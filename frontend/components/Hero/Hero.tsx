@@ -49,10 +49,6 @@ export function Hero() {
           animate={isVisible ? 'visible' : 'hidden'}
           variants={containerVariants}
         >
-          <motion.h1 className={styles.title} variants={itemVariants}>
-            Full-Stack Developer
-          </motion.h1>
-
           <motion.p className={styles.subtitle} variants={itemVariants}>
             Building robust, scalable web applications with modern technologies
           </motion.p>

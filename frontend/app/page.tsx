@@ -14,7 +14,9 @@ export default function Home() {
       <Hero />
       <About />
       <Projects />
-      <Chat apiUrl={API_URL} />
+      <section id="chat">
+        <Chat apiUrl={API_URL} />
+      </section>
       <CTA />
     </>
   );
