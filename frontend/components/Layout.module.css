@@ -7,11 +7,18 @@
 }
 
 .header {
-  background-color: var(--bg-secondary);
-  border-bottom: 1px solid var(--border-color);
+  background-color: rgba(245, 245, 245, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(224, 224, 224, 0.2);
   position: sticky;
   top: 0;
   z-index: 100;
+}
+
+[data-theme='dark'] .header {
+  background-color: rgba(45, 45, 45, 0.6);
+  border-bottom: 1px solid rgba(64, 64, 64, 0.2);
 }
 
 .headerContent {
