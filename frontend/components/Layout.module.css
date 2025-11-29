@@ -19,9 +19,14 @@
   margin: 0 auto;
   padding: var(--spacing-md);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-3xl);
+}
+
+.logo {
+  position: absolute;
+  left: var(--spacing-md);
 }
 
 .logo h1 {
@@ -36,7 +41,6 @@
 .nav {
   display: flex;
   gap: var(--spacing-lg);
-  flex: 1;
   justify-content: center;
 }
 
@@ -58,6 +62,8 @@
   font-size: 1.2rem;
   cursor: pointer;
   transition: all var(--transition-fast);
+  position: absolute;
+  right: var(--spacing-md);
 }
 
 .themeToggle:hover {
