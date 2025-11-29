@@ -17,17 +17,34 @@ This is the frontend application that:
 frontend/
 ├── app/
 │   ├── layout.tsx                # Root layout
-│   ├── page.tsx                  # Home page
+│   ├── page.tsx                  # Home page with blob animations
 │   └── page.module.css           # Home page styles
 ├── components/
-│   ├── Layout.tsx                # Main layout component
+│   ├── Layout.tsx                # Main layout component with glassmorphism header
 │   ├── Layout.module.css
+│   ├── Hero/
+│   │   ├── Hero.tsx              # Hero section component
+│   │   ├── Hero.module.css       # Hero styles
+│   │   ├── BlobAnimation.tsx      # Animated blob component
+│   │   └── MouseTracker.tsx       # Mouse tracking utility
+│   ├── About/
+│   │   ├── About.tsx             # About section
+│   │   └── About.module.css
+│   ├── Projects/
+│   │   ├── Projects.tsx          # Projects showcase
+│   │   └── Projects.module.css
+│   ├── CTA/
+│   │   ├── CTA.tsx               # Call-to-action section
+│   │   └── CTA.module.css
 │   ├── Chat.tsx                  # Chat component
 │   └── Chat.module.css
+├── hooks/
+│   └── useIntersectionObserver.ts # Custom hook for scroll animations
 ├── lib/
 │   └── websocket.ts              # WebSocket client
 ├── styles/
-│   └── globals.css               # Global styles with theme support
+│   ├── globals.css               # Global styles with theme support
+│   └── animations.css            # Animation keyframes
 ├── public/                        # Static assets
 ├── package.json
 ├── tsconfig.json
@@ -93,11 +110,58 @@ NEXT_PUBLIC_API_URL=http://localhost:8000/api
 ### Layout
 
 Main layout component that provides:
-- Header with navigation
+- Glassmorphism header with blur effect
 - Theme toggle (light/dark mode)
 - Footer with links
 
 **Props**: `children: React.ReactNode`
+
+### Hero
+
+Landing section with:
+- Animated gradient text
+- Blob background animations
+- CTA buttons
+- Scroll indicator
+- Intersection observer animations
+
+### BlobAnimation
+
+Animated blob shapes that:
+- Float and animate with keyframe animations
+- Support multiple variants (primary, secondary, tertiary)
+- Configurable size and positioning
+- Blend mode for visual depth
+- Framer Motion powered
+
+**Props**:
+- `variant`: 'primary' | 'secondary' | 'tertiary'
+- `size`: 'small' | 'medium' | 'large'
+- `duration`: animation duration in seconds
+- `delay`: animation delay in seconds
+- `top`, `right`, `left`: positioning
+
+### About
+
+Portfolio introduction section with:
+- Professional summary
+- Skills showcase
+- Experience highlights
+
+### Projects
+
+Projects showcase featuring:
+- Project cards with descriptions
+- Links to live demos and repositories
+- Technology stack display
+- Responsive grid layout
+
+### CTA
+
+Call-to-action section with:
+- Final message
+- Contact links
+- Social media integration
 
 ### Chat
 
@@ -112,12 +176,20 @@ Real-time chat component that provides:
 
 ## Features
 
+### Modern Design System
+
+- Animated blob backgrounds with glassmorphism effects
+- Gradient text and blend modes
+- Smooth scroll animations with Intersection Observer
+- Framer Motion powered interactions
+
 ### Dark Mode
 
 - Toggle button in header
 - Persisted in localStorage
 - Respects system preference on first visit
 - CSS custom properties for theme colors
+- Glassmorphic header adapts to theme
 
 ### Responsive Design
 
@@ -125,6 +197,14 @@ Real-time chat component that provides:
 - Breakpoints at 768px, 1024px, 1200px
 - Flexible grid layouts
 - Touch-friendly buttons and inputs
+- Responsive blob positioning
+
+### Scroll Animations
+
+- Intersection Observer Hook for performance
+- Staggered animations on element enter
+- Fade and slide effects
+- Once-trigger animations to prevent reflow
 
 ### Real-time Chat
 
@@ -143,31 +223,55 @@ Real-time chat component that provides:
 - Keyboard navigation support
 - Focus management
 - Color contrast compliance
+- Respects prefers-reduced-motion
 
 ## Styling
 
 ### CSS Architecture
 
-- **globals.css**: Theme variables and base styles
-- **Layout.module.css**: Layout component styles
+- **globals.css**: Theme variables, base styles, and animations
+- **animations.css**: Keyframe animations (fadeIn, slideUp, etc.)
+- **Layout.module.css**: Layout and header styles with glassmorphism
+- **Hero.module.css**: Hero section and blob animations
+- **About.module.css**: About section styles
+- **Projects.module.css**: Projects grid and card styles
+- **CTA.module.css**: Call-to-action section styles
 - **Chat.module.css**: Chat component styles
-- **page.module.css**: Page-specific styles
+- **page.module.css**: Page-level styles
 
 ### Theme Colors
 
 Light mode:
 ```css
 --bg-primary: #ffffff
+--bg-secondary: #f5f5f5
 --text-primary: #000000
+--text-secondary: #666666
 --accent-color: #0066cc
+--color-cyan: #00d9ff
+--color-pink: #ff006e
+--color-violet: #8338ec
 ```
 
 Dark mode:
 ```css
 --bg-primary: #1a1a1a
+--bg-secondary: #2d2d2d
 --text-primary: #ffffff
+--text-secondary: #b0b0b0
 --accent-color: #3b82f6
+--color-cyan: #00d9ff
+--color-pink: #ff006e
+--color-violet: #8338ec
 ```
+
+### Glassmorphism Effect
+
+Header uses:
+- Semi-transparent background (60% opacity)
+- Backdrop blur (10px)
+- Subtle border with reduced opacity
+- Smooth transitions between themes
 
 ## WebSocket Client
 
