@@ -11,7 +11,6 @@ export default function Home() {
       {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.heroContent}>
-          <h1 className={styles.title}>Full-Stack Developer</h1>
           <p className={styles.subtitle}>
             Building robust, scalable web applications with modern technologies
           </p>
