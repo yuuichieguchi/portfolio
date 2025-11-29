@@ -5,11 +5,13 @@
   flex-direction: column;
   gap: var(--spacing-lg);
   max-width: 800px;
-  margin: var(--spacing-2xl) auto 0;
+  margin: var(--spacing-2xl) auto;
   padding: var(--spacing-lg);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-lg);
-  background-color: var(--bg-secondary);
+  border: 1px solid rgba(0, 217, 255, 0.15);
+  border-radius: var(--radius-xl);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 217, 255, 0.1);
 }
 
 .description {
@@ -130,18 +132,20 @@
 .message {
   padding: var(--spacing-md);
   border-radius: var(--radius-md);
-  background-color: var(--bg-secondary);
+  background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(131, 56, 236, 0.05));
+  border: 1px solid rgba(0, 217, 255, 0.2);
   animation: slideUp var(--transition-normal);
 }
 
 .systemMessage {
-  background-color: transparent;
-  border-left: 3px solid var(--accent-color);
+  background: linear-gradient(135deg, rgba(131, 56, 236, 0.1), rgba(255, 0, 110, 0.05));
+  border-left: 3px solid var(--color-violet);
+  border: 1px solid rgba(131, 56, 236, 0.2);
   padding-left: var(--spacing-md);
 }
 
 .systemMessage .username {
-  color: var(--accent-color);
+  color: var(--color-violet);
   font-weight: 600;
 }
 
