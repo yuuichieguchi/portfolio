@@ -11,6 +11,8 @@ type ProjectCarouselProps = {
 export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const autoPlayIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const isTouchingRef = useRef(false);
+  const resumeAutoPlayTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // 無限ループ用にカードを多数複製（十分な数を用意）
   const infiniteProjects = useMemo(() => {
@@ -70,6 +72,7 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
 
     return () => {
       if (autoPlayIntervalRef.current) clearInterval(autoPlayIntervalRef.current);
+      if (resumeAutoPlayTimeoutRef.current) clearTimeout(resumeAutoPlayTimeoutRef.current);
     };
   }, []);
 
@@ -78,6 +81,19 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   };
 
   const handleMouseLeave = () => {
+    startAutoPlay();
+  };
+
+  const handleTouchStart = () => {
+    isTouchingRef.current = true;
+    if (autoPlayIntervalRef.current) clearInterval(autoPlayIntervalRef.current);
+    if (resumeAutoPlayTimeoutRef.current) clearTimeout(resumeAutoPlayTimeoutRef.current);
+  };
+
+  const handleTouchEnd = () => {
+    isTouchingRef.current = false;
+    // タッチ終了時点で自動再生を再開
+    if (resumeAutoPlayTimeoutRef.current) clearTimeout(resumeAutoPlayTimeoutRef.current);
     startAutoPlay();
   };
 
@@ -113,6 +129,8 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
             className={styles.projectCard}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
           >
             <div className={styles.projectContent}>
               <h3>{project.title}</h3>
