@@ -44,15 +44,16 @@ export const projects: ProjectData[] = [
     id: 'pydantic-llm-io',
     title: 'pydantic-llm-io',
     description:
-      'Type-safe, validated input/output handling for LLM calls. Combines Pydantic models for strict schema validation with smart retry logic using automatic LLM self-correction prompts. Supports multiple LLM providers with a clean, provider-agnostic interface.',
+      'Type-safe, validated input/output handling for LLM calls using Pydantic models for strict schema validation with automatic LLM self-correction prompts.',
     features: [
       'Type-safe input/output schemas with Pydantic',
       'Automatic JSON parsing and validation',
       'Smart retry logic with exponential backoff',
-      'Multi-provider support (OpenAI, Anthropic, custom)',
+      'Multi-provider support (OpenAI, Anthropic)',
       'Full async/await support',
       'Detailed error handling with context',
       'Configurable logging with sensitive data control',
+      'Provider-agnostic clean interface',
     ],
     tags: ['Python 3.10+', 'Pydantic', 'LLM', 'OpenAI', 'Anthropic', 'Type Hints'],
     stats: [
@@ -76,15 +77,15 @@ export const projects: ProjectData[] = [
     id: 'autoclean-dataframe',
     title: 'autoclean-dataframe',
     description:
-      'Automatic, configurable data cleansing for pandas DataFrames with detailed reporting. Enables quick cleaning of messy tabular data through declarative configuration via Python dicts, Pydantic models, or YAML/JSON files.',
+      'Automatic data cleansing for pandas DataFrames with detailed reporting through declarative configuration via Python dicts, Pydantic models, or YAML/JSON files.',
     features: [
       'Declarative configuration (Python, Pydantic, YAML, JSON)',
-      'Missing value imputation (mean, median, mode, forward/backward fill)',
+      'Missing value imputation with multiple strategies',
       'Type conversion with intelligent error handling',
       'Text normalization and whitespace management',
-      'PII masking (emails, phone numbers, custom patterns)',
+      'PII masking (emails, phone numbers, patterns)',
       'Outlier detection (IQR, z-score methods)',
-      'Duplicate removal and empty row/column handling',
+      'Duplicate removal and empty row handling',
       'Detailed reporting with JSON output',
     ],
     tags: ['Python 3.8+', 'pandas', 'Pydantic', 'YAML', 'Data Processing'],

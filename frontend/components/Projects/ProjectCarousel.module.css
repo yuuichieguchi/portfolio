@@ -264,6 +264,16 @@
     gap: var(--spacing-md);
     padding: var(--spacing-md);
     max-width: 90vw;
+    min-height: auto;
+  }
+
+  .projectCard:hover {
+    transform: none;
+    border-color: rgba(0, 217, 255, 0.15);
+  }
+
+  .projectCard:hover::before {
+    opacity: 0;
   }
 
   .projectStats {
@@ -279,6 +289,33 @@
 
   .statLabel {
     font-size: 0.8rem;
+  }
+
+  .projectContent p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .projectContent h3 {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .features h4,
+  .specs h4 {
+    font-size: 0.95rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .featuresList li {
+    font-size: 0.9rem;
+    padding-left: var(--spacing-md);
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    padding: var(--spacing-xs) var(--spacing-sm);
   }
 
   .projectLinks {
