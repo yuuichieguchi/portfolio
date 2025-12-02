@@ -102,12 +102,13 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   };
 
   return (
-    <div
-      className={styles.carousel}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      <div className={styles.scrollContainer} ref={scrollContainerRef}>
+    <div className={styles.carousel}>
+      <div
+        className={styles.scrollContainer}
+        ref={scrollContainerRef}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         {infiniteProjects.map((project, index) => (
           <div key={`${project.id}-${index}`} className={styles.projectCard}>
             <div className={styles.projectContent}>

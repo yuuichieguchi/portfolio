@@ -217,6 +217,7 @@
   gap: var(--spacing-md);
   margin-top: var(--spacing-2xl);
   padding: var(--spacing-lg) 0;
+  pointer-events: none;
 }
 
 .dot {
@@ -228,6 +229,7 @@
   cursor: pointer;
   transition: all var(--duration-fast) var(--ease-in-out);
   padding: 0;
+  pointer-events: auto;
 }
 
 .dot:hover {
