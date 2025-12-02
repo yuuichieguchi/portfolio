@@ -13,12 +13,12 @@
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
   padding: var(--spacing-2xl) var(--spacing-lg);
   margin: 0 calc(var(--spacing-lg) * -1);
   padding-left: max(var(--spacing-lg), calc((100% - 1200px) / 2));
   padding-right: max(var(--spacing-lg), calc((100% - 1200px) / 2));
   scrollbar-width: none;
+  scroll-behavior: smooth;
 }
 
 .scrollContainer::-webkit-scrollbar {
