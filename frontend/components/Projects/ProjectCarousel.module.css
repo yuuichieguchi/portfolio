@@ -1,8 +1,28 @@
-/* ProjectCarousel Styles */
+/* ProjectCarousel Styles - Apple-style Horizontal Scrolling */
 
 .carousel {
   position: relative;
   width: 100%;
+  padding: var(--spacing-2xl) 0;
+}
+
+/* Scroll Container */
+.scrollContainer {
+  display: flex;
+  gap: var(--spacing-lg);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: var(--spacing-2xl) var(--spacing-lg);
+  margin: 0 calc(var(--spacing-lg) * -1);
+  padding-left: max(var(--spacing-lg), calc((100% - 1200px) / 2));
+  padding-right: max(var(--spacing-lg), calc((100% - 1200px) / 2));
+  scrollbar-width: none;
+}
+
+.scrollContainer::-webkit-scrollbar {
+  display: none;
 }
 
 /* Project Card */
@@ -15,11 +35,16 @@
   background: var(--bg-section);
   border: 1px solid rgba(0, 217, 255, 0.15);
   border-radius: var(--radius-xl);
-  margin-top: var(--spacing-2xl);
   transition: all var(--duration-normal) var(--ease-in-out);
   backdrop-filter: blur(10px);
   overflow: hidden;
   animation: fadeInUp var(--duration-normal) var(--ease-out);
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 800px;
+  min-height: 400px;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
 }
 
 .projectCard::before {
@@ -222,7 +247,7 @@
     grid-template-columns: 1fr;
     gap: var(--spacing-lg);
     padding: var(--spacing-lg);
-    margin-top: var(--spacing-lg);
+    max-width: 90vw;
   }
 
   .projectLinks {
@@ -264,5 +289,9 @@
 
   .dot {
     transition: none;
+  }
+
+  .scrollContainer {
+    scroll-behavior: auto;
   }
 }
