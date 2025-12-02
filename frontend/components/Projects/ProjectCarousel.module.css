@@ -282,14 +282,14 @@
   }
 
   .projectLinks {
-    flex-direction: row;
+    flex-direction: column;
     gap: var(--spacing-md);
-    flex-wrap: wrap;
   }
 
   .linkButton {
-    font-size: 0.7rem;
-    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.8rem;
+    padding: var(--spacing-md) var(--spacing-lg);
+    width: 100%;
   }
 }
 
