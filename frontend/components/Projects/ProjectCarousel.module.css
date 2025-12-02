@@ -58,14 +58,16 @@
   z-index: -1;
 }
 
-.projectCard:hover {
-  border-color: var(--color-cyan);
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-glow);
-}
+@media (hover: hover) {
+  .projectCard:hover {
+    border-color: var(--color-cyan);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-glow);
+  }
 
-.projectCard:hover::before {
-  opacity: 0.05;
+  .projectCard:hover::before {
+    opacity: 0.05;
+  }
 }
 
 /* Project content */
