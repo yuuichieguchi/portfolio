@@ -258,6 +258,41 @@
 }
 
 /* Responsive Design */
+@media (max-width: 480px) {
+  .projectCard {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    max-width: 90vw;
+  }
+
+  .projectStats {
+    display: flex;
+    flex-direction: column;
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .statValue {
+    font-size: 1.5rem;
+  }
+
+  .statLabel {
+    font-size: 0.8rem;
+  }
+
+  .projectLinks {
+    flex-direction: row;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+  }
+
+  .linkButton {
+    font-size: 0.7rem;
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+}
+
 @media (max-width: 768px) {
   .projectCard {
     grid-template-columns: 1fr;
@@ -267,21 +302,24 @@
   }
 
   .projectLinks {
-    flex-direction: column;
+    flex-direction: row;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
   }
 
   .linkButton {
     text-align: center;
-    width: 100%;
   }
 
   .projectStats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    border-top: none;
-    padding-top: 0;
-    border-left: 1px solid rgba(0, 217, 255, 0.1);
-    padding-left: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .statValue {
+    font-size: 2rem;
   }
 
   .dotsContainer {
