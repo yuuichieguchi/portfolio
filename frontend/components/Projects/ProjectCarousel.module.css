@@ -2,7 +2,8 @@
 
 .carousel {
   position: relative;
-  width: 100%;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
   padding: var(--spacing-2xl) 0;
 }
 
@@ -13,10 +14,9 @@
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
-  padding: var(--spacing-2xl) var(--spacing-lg);
-  margin: 0 calc(var(--spacing-lg) * -1);
-  padding-left: max(var(--spacing-lg), calc((100% - 1200px) / 2));
-  padding-right: max(var(--spacing-lg), calc((100% - 1200px) / 2));
+  padding: var(--spacing-2xl) 0;
+  padding-left: var(--spacing-lg);
+  padding-right: var(--spacing-lg);
   scrollbar-width: none;
   scroll-behavior: smooth;
 }
