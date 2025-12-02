@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useMemo } from 'react';
 import { ProjectData } from '@/data/projects';
 import styles from './ProjectCarousel.module.css';
 
@@ -11,16 +11,24 @@ type ProjectCarouselProps = {
 export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const autoPlayIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const isAutoScrollingRef = useRef(false);
+
+  // 無限ループ用にカードを複製（前3つ + 元の3つ + 後3つ）
+  const infiniteProjects = useMemo(() => {
+    return [...projects, ...projects, ...projects];
+  }, [projects]);
 
   const startAutoPlay = () => {
     if (autoPlayIntervalRef.current) clearInterval(autoPlayIntervalRef.current);
 
     autoPlayIntervalRef.current = setInterval(() => {
-      if (scrollContainerRef.current) {
+      if (scrollContainerRef.current && !isAutoScrollingRef.current) {
         const container = scrollContainerRef.current;
         const cardWidth = container.querySelector(`.${styles.projectCard}`)?.clientWidth || 0;
         const gapWidth = 16; // var(--spacing-lg) 相当
         const scrollAmount = cardWidth + gapWidth;
+
+        isAutoScrollingRef.current = true;
 
         // スムーズにスクロール
         container.scrollBy({
@@ -28,17 +36,39 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
           behavior: 'smooth',
         });
 
-        // 最後のカードに到達したらループ
+        // スムーズスクロール完了後にループをチェック
         setTimeout(() => {
-          if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 50) {
-            container.scrollLeft = 0;
-          }
+          handleInfiniteLoop();
+          isAutoScrollingRef.current = false;
         }, 600);
       }
     }, 3000);
   };
 
+  const handleInfiniteLoop = () => {
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const cardWidth = container.querySelector(`.${styles.projectCard}`)?.clientWidth || 0;
+      const gapWidth = 16;
+      const itemWidth = cardWidth + gapWidth;
+      const firstSetScrollPosition = itemWidth * projects.length;
+
+      // 最後の最後の方まで来たら、最初の方に一瞬でジャンプ
+      if (container.scrollLeft >= itemWidth * (projects.length * 2.5)) {
+        container.scrollLeft = firstSetScrollPosition;
+      }
+    }
+  };
+
   useEffect(() => {
+    // 初期状態で中央セット（前3つ分スキップ）
+    if (scrollContainerRef.current) {
+      const cardWidth = scrollContainerRef.current.querySelector(`.${styles.projectCard}`)?.clientWidth || 0;
+      const gapWidth = 16;
+      const itemWidth = cardWidth + gapWidth;
+      scrollContainerRef.current.scrollLeft = itemWidth * projects.length;
+    }
+
     startAutoPlay();
 
     return () => {
@@ -59,7 +89,10 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
       const container = scrollContainerRef.current;
       const cardWidth = container.querySelector(`.${styles.projectCard}`)?.clientWidth || 0;
       const gapWidth = 16;
-      const scrollAmount = (cardWidth + gapWidth) * index;
+      // 中央セット（projects.length分）+ 指定インデックス
+      const scrollAmount = (cardWidth + gapWidth) * (projects.length + index);
+
+      isAutoScrollingRef.current = true;
 
       container.scrollTo({
         left: scrollAmount,
@@ -68,7 +101,10 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
 
       // ドット選択時は自動再生を一時停止
       if (autoPlayIntervalRef.current) clearInterval(autoPlayIntervalRef.current);
-      setTimeout(() => startAutoPlay(), 5000);
+      setTimeout(() => {
+        isAutoScrollingRef.current = false;
+        startAutoPlay();
+      }, 5000);
     }
   };
 
@@ -79,8 +115,8 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
       onMouseLeave={handleMouseLeave}
     >
       <div className={styles.scrollContainer} ref={scrollContainerRef}>
-        {projects.map((project) => (
-          <div key={project.id} className={styles.projectCard}>
+        {infiniteProjects.map((project, index) => (
+          <div key={`${project.id}-${index}`} className={styles.projectCard}>
             <div className={styles.projectContent}>
               <h3>{project.title}</h3>
               <p>{project.description}</p>
