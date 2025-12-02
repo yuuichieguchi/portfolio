@@ -12,12 +12,14 @@ type ProjectCarouselProps = {
 export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlay, setIsAutoPlay] = useState(true);
+  const [direction, setDirection] = useState(1); // 1: next, -1: prev
 
   // 3秒ごとに自動スライド
   useEffect(() => {
     if (!isAutoPlay) return;
 
     const timer = setInterval(() => {
+      setDirection(1);
       setCurrentIndex((prev) => (prev + 1) % projects.length);
     }, 3000);
 
@@ -25,6 +27,8 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
   }, [isAutoPlay, projects.length]);
 
   const goToSlide = (index: number) => {
+    const newDirection = index > currentIndex ? 1 : -1;
+    setDirection(newDirection);
     setCurrentIndex(index);
     setIsAutoPlay(false);
     // 5秒後に自動スライド再開
@@ -42,10 +46,10 @@ export function ProjectCarousel({ projects }: ProjectCarouselProps) {
       <AnimatePresence mode="wait">
         <motion.div
           key={currentProject.id}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, x: direction > 0 ? 100 : -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: direction > 0 ? -100 : 100 }}
+          transition={{ duration: 0.6, ease: 'easeInOut' }}
           className={styles.projectCard}
         >
           <div className={styles.projectContent}>
