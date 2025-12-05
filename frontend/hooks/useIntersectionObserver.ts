@@ -8,18 +8,19 @@ interface UseIntersectionObserverOptions {
 
 export function useIntersectionObserver(
   options: UseIntersectionObserverOptions = {}
-): [React.RefObject<HTMLElement>, boolean] {
-  const ref = useRef<HTMLElement>(null);
+): [React.RefObject<HTMLElement | null>, boolean] {
+  const ref = useRef<HTMLElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    if (!ref.current) return;
+    const element = ref.current;
+    if (!element) return;
 
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
         setIsVisible(true);
-        if (options.once) {
-          observer.unobserve(ref.current!);
+        if (options.once && element) {
+          observer.unobserve(element);
         }
       } else if (!options.once) {
         setIsVisible(false);
@@ -29,12 +30,9 @@ export function useIntersectionObserver(
       rootMargin: options.rootMargin ?? '0px',
     });
 
-    observer.observe(ref.current);
+    observer.observe(element);
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
       observer.disconnect();
     };
   }, [options.threshold, options.rootMargin, options.once]);

@@ -25,13 +25,13 @@ export function Hero() {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: 'easeOut',
+        ease: 'easeOut' as const,
       },
     },
   };
 
   return (
-    <section className={styles.hero} ref={ref}>
+    <section className={styles.hero} ref={ref} aria-label="Hero section">
       {/* Hero content */}
       <motion.div
         className={styles.heroContent}
@@ -63,6 +63,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
         transition={{ delay: 0.8, duration: 0.5 }}
+        aria-hidden="true"
       >
         <div className={styles.scrollDot} />
         <div className={styles.scrollLabel}>Scroll to explore</div>

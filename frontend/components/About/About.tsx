@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import styles from './About.module.css';
 
@@ -49,7 +50,7 @@ export function About() {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: 'easeOut',
+        ease: 'easeOut' as const,
       },
     },
   };
@@ -73,10 +74,13 @@ export function About() {
       >
         {/* Left column - Profile Image and Text */}
         <motion.div className={styles.leftColumn} variants={itemVariants}>
-          <img
+          <Image
             src="https://github.com/yuuichieguchi.png"
             alt="Yuuichi Eguchi"
             className={styles.profileImage}
+            width={300}
+            height={300}
+            priority
           />
           <motion.div className={styles.textContent}>
           <p>

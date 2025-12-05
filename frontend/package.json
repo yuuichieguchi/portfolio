@@ -7,21 +7,33 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "next": "^16.0.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "typescript": "^5.0.0",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "framer-motion": "^12.23.25",
+    "next": "16.0.7",
     "next-themes": "^0.2.1",
-    "framer-motion": "^10.16.0"
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
+    "typescript": "^5.0.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^20.0.0",
+    "@vitejs/plugin-react": "^5.1.1",
+    "@vitest/ui": "^4.0.15",
     "eslint": "^9.0.0",
     "eslint-config-next": "^16.0.0",
-    "@types/node": "^20.0.0"
+    "happy-dom": "^20.0.11",
+    "jsdom": "^27.2.0",
+    "vitest": "^4.0.15"
   }
 }
