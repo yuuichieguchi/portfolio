@@ -6,7 +6,7 @@ A modern, full-stack portfolio website built with Next.js, React, FastAPI, and T
 
 This portfolio showcases a production-ready full-stack application with:
 
-- **Modern Frontend**: Next.js 14 with React 18 and TypeScript
+- **Modern Frontend**: Next.js 16 with React 19 and TypeScript
 - **Robust Backend**: FastAPI with async/await support
 - **Real-time Communication**: WebSocket-based chat using WebSocket Stabilizer
 - **Security**: Input validation, XSS protection, HTML escaping
