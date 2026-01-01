@@ -68,7 +68,6 @@ export default function Layout({ children }: LayoutProps) {
           <nav className={`${styles.nav} ${menuOpen ? styles.open : ""}`}>
             <Link href="/#about" onClick={() => setMenuOpen(false)}>About</Link>
             <Link href="/#projects" onClick={() => setMenuOpen(false)}>Projects</Link>
-            <Link href="/#chat" onClick={() => setMenuOpen(false)}>Chat</Link>
             <Link href="/capsule-rsc" onClick={() => setMenuOpen(false)}>capsule-rsc</Link>
           </nav>
 

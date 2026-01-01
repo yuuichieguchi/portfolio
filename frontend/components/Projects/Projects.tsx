@@ -27,20 +27,6 @@ export function Projects() {
       >
         <ProjectCarousel projects={projects} />
       </motion.div>
-
-      <div className={styles.container}>
-        <motion.div
-          className={styles.demoNotice}
-          initial={{ opacity: 0, y: 20 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <p>
-            ✨ <strong>Try the live demo below!</strong> This portfolio uses the FastAPI WebSocket Stabilizer library
-            to power the real-time chat. Join the conversation to see it in action.
-          </p>
-        </motion.div>
-      </div>
     </section>
   );
 }

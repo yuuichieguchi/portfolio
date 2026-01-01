@@ -4,15 +4,12 @@ import { Hero } from '@/components/Hero/Hero';
 import { About } from '@/components/About/About';
 import { Projects } from '@/components/Projects/Projects';
 import { CTA } from '@/components/CTA/CTA';
-import Chat from '@/components/Chat';
 import { BlobAnimation } from '@/components/Hero/BlobAnimation';
-
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 
 export default function Home() {
   return (
     <>
-      {/* Background blobs container spanning Hero, About, Projects, and Chat */}
+      {/* Background blobs container spanning Hero, About, and Projects */}
       <div
         style={{
           position: 'absolute',
@@ -33,9 +30,6 @@ export default function Home() {
         <Hero />
         <About />
         <Projects />
-        <section id="chat">
-          <Chat apiUrl={API_URL} />
-        </section>
         <CTA />
       </div>
     </>

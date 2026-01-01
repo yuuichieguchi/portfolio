@@ -51,9 +51,6 @@ export function Hero() {
           <a href="#projects" className={styles.buttonPrimary}>
             View Projects
           </a>
-          <a href="#chat" className={styles.buttonSecondary}>
-            Try Live Demo
-          </a>
         </motion.div>
       </motion.div>
 
