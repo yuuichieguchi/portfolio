@@ -50,11 +50,11 @@ export function CapsuleRscDemo() {
           </a>
         </motion.header>
 
-        <motion.main className={styles.main} variants={itemVariants}>
+        <main className={styles.main}>
           <TypeDemo />
           <RuntimeDemo />
           <ServerClientDemo />
-        </motion.main>
+        </main>
     </motion.div>
   );
 }

@@ -3,11 +3,12 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
+import { assertSerializable, SerializationError } from '@capsulersc/core';
 import styles from './RuntimeDemo.module.css';
 
 type TestCase = 'Valid Object' | 'Date' | 'Function';
 
-const testCases: Record<TestCase, { code: string; isValid: boolean }> = {
+const testCases: Record<TestCase, { code: string; getValue: () => unknown }> = {
   'Valid Object': {
     code: `{
   id: 1,
@@ -15,21 +16,32 @@ const testCases: Record<TestCase, { code: string; isValid: boolean }> = {
   email: "user@example.com",
   active: true
 }`,
-    isValid: true,
+    getValue: () => ({
+      id: 1,
+      name: 'User',
+      email: 'user@example.com',
+      active: true,
+    }),
   },
   'Date': {
     code: `{
   createdAt: new Date(),
   updatedAt: new Date()
 }`,
-    isValid: false,
+    getValue: () => ({
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }),
   },
   'Function': {
     code: `{
   onClick: () => alert("Clicked!"),
   handleSubmit: function() {}
 }`,
-    isValid: false,
+    getValue: () => ({
+      onClick: () => alert('Clicked!'),
+      handleSubmit: function () {},
+    }),
   },
 };
 
@@ -57,13 +69,23 @@ const resultVariants = {
 };
 
 export function RuntimeDemo() {
-  const [selectedCase, setSelectedCase] = useState<TestCase>('Valid Object');
-  const [validationResult, setValidationResult] = useState<'success' | 'error' | null>(null);
   const [ref, isVisible] = useIntersectionObserver({ once: true, threshold: 0.2 });
+  const [selectedCase, setSelectedCase] = useState<TestCase>('Valid Object');
+  const [validationResult, setValidationResult] = useState<{
+    type: 'success' | 'error';
+    path?: string;
+  } | null>(null);
 
   const handleValidate = () => {
-    const result = testCases[selectedCase].isValid ? 'success' : 'error';
-    setValidationResult(result);
+    const value = testCases[selectedCase].getValue();
+    try {
+      assertSerializable(value, '$');
+      setValidationResult({ type: 'success' });
+    } catch (error) {
+      if (error instanceof SerializationError) {
+        setValidationResult({ type: 'error', path: error.path });
+      }
+    }
   };
 
   const handleSelectCase = (testCase: TestCase) => {
@@ -72,17 +94,22 @@ export function RuntimeDemo() {
   };
 
   return (
-    <motion.section
-      ref={ref as React.RefObject<HTMLElement>}
-      data-testid="runtime-demo-section"
-      className={styles.section}
-      variants={containerVariants}
-      initial="hidden"
-      animate={isVisible ? 'visible' : 'hidden'}
-    >
-      <h2 className={styles.sectionTitle}>Runtime Validation</h2>
+    <section data-testid="runtime-demo-section" className={styles.section} ref={ref}>
+      <motion.h2
+        className={styles.sectionTitle}
+        initial={{ opacity: 0, y: -20 }}
+        animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+        transition={{ duration: 0.6 }}
+      >
+        Runtime Validation
+      </motion.h2>
 
-      <motion.div className={styles.content} variants={itemVariants}>
+      <motion.div
+        className={styles.content}
+        initial="hidden"
+        animate={isVisible ? 'visible' : 'hidden'}
+        variants={containerVariants}
+      >
         <motion.div className={styles.controls} variants={itemVariants}>
           <div className={styles.testCases}>
             {(Object.keys(testCases) as TestCase[]).map((testCase) => (
@@ -119,7 +146,7 @@ export function RuntimeDemo() {
         </motion.div>
 
         <AnimatePresence mode="wait">
-          {validationResult === 'success' && (
+          {validationResult?.type === 'success' && (
             <motion.div
               key="success"
               data-testid="validation-success"
@@ -133,7 +160,7 @@ export function RuntimeDemo() {
             </motion.div>
           )}
 
-          {validationResult === 'error' && (
+          {validationResult?.type === 'error' && (
             <motion.div
               key="error"
               data-testid="validation-error"
@@ -143,11 +170,16 @@ export function RuntimeDemo() {
               animate="visible"
               exit="exit"
             >
-              Error: Contains non-serializable types
+              <div>Error: Contains non-serializable types</div>
+              {validationResult.path && (
+                <div data-testid="error-path" className={styles.errorPath}>
+                  Path: {validationResult.path}
+                </div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
       </motion.div>
-    </motion.section>
+    </section>
   );
 }

@@ -5,6 +5,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import styles from "./Layout.module.css";
 
 interface LayoutProps {
@@ -53,10 +54,10 @@ export default function Layout({ children }: LayoutProps) {
           </div>
 
           <nav className={styles.nav}>
-            <a href="/#about">About</a>
-            <a href="/#projects">Projects</a>
-            <a href="/#chat">Chat</a>
-            <a href="/capsule-rsc">capsule-rsc</a>
+            <Link href="/#about">About</Link>
+            <Link href="/#projects">Projects</Link>
+            <Link href="/#chat">Chat</Link>
+            <Link href="/capsule-rsc">capsule-rsc</Link>
           </nav>
 
           <button
