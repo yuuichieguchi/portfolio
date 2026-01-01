@@ -15,6 +15,7 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [mounted, setMounted] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -53,11 +54,11 @@ export default function Layout({ children }: LayoutProps) {
             <h1>Yuuichi Eguchi</h1>
           </div>
 
-          <nav className={styles.nav}>
-            <Link href="/#about">About</Link>
-            <Link href="/#projects">Projects</Link>
-            <Link href="/#chat">Chat</Link>
-            <Link href="/capsule-rsc">capsule-rsc</Link>
+          <nav className={`${styles.nav} ${menuOpen ? styles.open : ""}`}>
+            <Link href="/#about" onClick={() => setMenuOpen(false)}>About</Link>
+            <Link href="/#projects" onClick={() => setMenuOpen(false)}>Projects</Link>
+            <Link href="/#chat" onClick={() => setMenuOpen(false)}>Chat</Link>
+            <Link href="/capsule-rsc" onClick={() => setMenuOpen(false)}>capsule-rsc</Link>
           </nav>
 
           <button
@@ -66,6 +67,17 @@ export default function Layout({ children }: LayoutProps) {
             aria-label="Toggle theme"
           >
             {theme === "light" ? "🌙" : "☀️"}
+          </button>
+
+          <button
+            className={`${styles.menuButton} ${menuOpen ? styles.open : ""}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+          >
+            <span />
+            <span />
+            <span />
           </button>
         </div>
       </header>
