@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { RuntimeDemo } from './RuntimeDemo';
 
 vi.mock('@/hooks/useIntersectionObserver', () => ({
-  useIntersectionObserver: () => [{ current: null }, false],
+  useIntersectionObserver: () => [{ current: null }, true],
 }));
 
 describe('RuntimeDemo', () => {

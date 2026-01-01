@@ -19,9 +19,18 @@
 
 .patternCard {
   background: var(--bg-section);
-  border: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 217, 255, 0.2);
   border-radius: var(--radius-lg);
   overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+.patternCard:hover {
+  border-color: var(--color-cyan);
+  background: rgba(0, 217, 255, 0.05);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-glow);
 }
 
 .patternHeader {
@@ -79,9 +88,16 @@
 
 .defenseDiagram {
   background: var(--bg-section);
+  backdrop-filter: blur(10px);
   padding: var(--spacing-xl);
   border-radius: var(--radius-lg);
-  border: 1px solid var(--border-color);
+  border: 1px solid rgba(0, 217, 255, 0.2);
+  transition: all var(--transition-normal);
+}
+
+.defenseDiagram:hover {
+  border-color: var(--color-cyan);
+  box-shadow: var(--shadow-glow);
 }
 
 .diagramTitle {
@@ -111,7 +127,8 @@
 
 .layer:hover {
   border-color: var(--color-cyan);
-  transform: translateX(4px);
+  transform: translateY(-4px) translateX(4px);
+  box-shadow: var(--shadow-glow);
 }
 
 .layerNumber {

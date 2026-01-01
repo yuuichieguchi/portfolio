@@ -19,9 +19,16 @@
 
 .typeSection {
   background: var(--bg-section);
-  padding: var(--spacing-lg);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 217, 255, 0.2);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-xl);
+  transition: all var(--transition-normal);
+}
+
+.typeSection:hover {
+  border-color: var(--color-cyan);
+  box-shadow: var(--shadow-glow);
 }
 
 .typeHeader {
@@ -62,7 +69,16 @@
 }
 
 .typeCard:hover {
-  transform: translateY(-2px);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-glow);
+}
+
+.serializable .typeCard:hover {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+}
+
+.nonSerializable .typeCard:hover {
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
 }
 
 .typeName {
@@ -88,9 +104,10 @@
 
 .typeChecker {
   background: var(--bg-section);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 217, 255, 0.2);
   padding: var(--spacing-xl);
   border-radius: var(--radius-lg);
-  border: 1px solid var(--border-color);
 }
 
 .checkerTitle {

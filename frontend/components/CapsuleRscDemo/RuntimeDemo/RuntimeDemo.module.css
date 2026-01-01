@@ -12,9 +12,16 @@
 
 .content {
   background: var(--bg-section);
+  backdrop-filter: blur(10px);
   padding: var(--spacing-xl);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(0, 217, 255, 0.2);
+  transition: all var(--transition-normal);
+}
+
+.content:hover {
+  border-color: var(--color-cyan);
+  box-shadow: var(--shadow-glow);
 }
 
 .controls {
@@ -46,6 +53,8 @@
 .testCaseButton:hover {
   border-color: var(--color-cyan);
   color: var(--color-cyan);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow);
 }
 
 .testCaseButton.selected {
@@ -66,12 +75,12 @@
 }
 
 .validateButton:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px);
   box-shadow: var(--shadow-glow);
 }
 
 .codePreview {
-  background: var(--bg-primary);
+  background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   margin-bottom: var(--spacing-lg);
@@ -100,6 +109,7 @@
   color: var(--success-color);
   font-weight: 600;
   text-align: center;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
 }
 
 .error {
@@ -110,6 +120,7 @@
   color: var(--error-color);
   font-weight: 600;
   text-align: center;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
 }
 
 @media (max-width: 768px) {

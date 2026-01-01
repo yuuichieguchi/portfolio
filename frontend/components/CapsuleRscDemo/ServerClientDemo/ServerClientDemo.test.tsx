@@ -3,7 +3,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { ServerClientDemo } from './ServerClientDemo';
 
 vi.mock('@/hooks/useIntersectionObserver', () => ({
-  useIntersectionObserver: () => [{ current: null }, false],
+  useIntersectionObserver: () => [{ current: null }, true],
 }));
 
 describe('ServerClientDemo', () => {

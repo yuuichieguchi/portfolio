@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { TypeDemo } from './TypeDemo';
 
 vi.mock('@/hooks/useIntersectionObserver', () => ({
-  useIntersectionObserver: () => [{ current: null }, false],
+  useIntersectionObserver: () => [{ current: null }, true],
 }));
 
 describe('TypeDemo', () => {
@@ -95,12 +95,11 @@ describe('TypeDemo', () => {
   // ==================== Interactive Type Checker ====================
 
   describe('interactive type checker', () => {
-    it('should show "Not Serializable" when Date is selected', async () => {
-      const user = userEvent.setup();
+    it('should show "Not Serializable" when Date is selected', () => {
       render(<TypeDemo />);
 
-      const dateOption = screen.getByRole('button', { name: /Date/i });
-      await user.click(dateOption);
+      const dateOption = screen.getByTestId('type-card-Date');
+      fireEvent.click(dateOption);
 
       expect(screen.getByText(/Not Serializable/i)).toBeInTheDocument();
     });
