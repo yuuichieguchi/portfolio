@@ -10,6 +10,37 @@ export type ProjectData = {
 
 export const projects: ProjectData[] = [
   {
+    id: 'capsule-rsc',
+    title: 'capsule-rsc',
+    description:
+      'Safe Server/Client Boundary Enforcement for React Server Components. A 3-layer defense system that ensures data passed from Server to Client Components is always serializable.',
+    features: [
+      'Type-level safety with TypeScript Serializable type',
+      'Build-time validation with ESLint plugin',
+      'Runtime assertion with assertSerializable',
+      'Safe payload rendering and hydration',
+      'Zero runtime overhead in production',
+      'Full TypeScript support',
+    ],
+    tags: ['TypeScript', 'React 19', 'RSC', 'ESLint', 'Next.js'],
+    stats: [
+      { value: '3', label: 'Defense Layers' },
+      { value: '4', label: 'ESLint Rules' },
+      { value: '100%', label: 'Type Coverage' },
+      { value: 'MIT', label: 'License' },
+    ],
+    links: [
+      {
+        label: 'View on GitHub',
+        href: 'https://github.com/yuuichieguchi/capsule-rsc',
+      },
+      {
+        label: 'Live Demo',
+        href: '/capsule-rsc',
+      },
+    ],
+  },
+  {
     id: 'fastapi-websocket-stabilizer',
     title: 'FastAPI WebSocket Stabilizer',
     description:

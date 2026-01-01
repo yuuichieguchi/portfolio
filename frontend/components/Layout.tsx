@@ -54,6 +54,7 @@ export default function Layout({ children }: LayoutProps) {
             <a href="#about">About</a>
             <a href="#projects">Projects</a>
             <a href="#chat">Chat</a>
+            <a href="/capsule-rsc">Demo</a>
           </nav>
 
           <button
