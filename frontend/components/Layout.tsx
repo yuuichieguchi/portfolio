@@ -50,6 +50,17 @@ export default function Layout({ children }: LayoutProps) {
     <div className={styles.layout}>
       <header className={styles.header}>
         <div className={styles.headerContent}>
+          <button
+            className={`${styles.menuButton} ${menuOpen ? styles.open : ""}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+
           <div className={styles.logo}>
             <h1>Yuuichi Eguchi</h1>
           </div>
@@ -67,17 +78,6 @@ export default function Layout({ children }: LayoutProps) {
             aria-label="Toggle theme"
           >
             {theme === "light" ? "🌙" : "☀️"}
-          </button>
-
-          <button
-            className={`${styles.menuButton} ${menuOpen ? styles.open : ""}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-            aria-expanded={menuOpen}
-          >
-            <span />
-            <span />
-            <span />
           </button>
         </div>
       </header>
