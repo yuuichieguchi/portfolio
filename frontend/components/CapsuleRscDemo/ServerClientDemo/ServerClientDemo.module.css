@@ -91,73 +91,90 @@
 }
 
 .defenseDiagram {
-  background: var(--bg-section);
-  backdrop-filter: blur(10px);
-  padding: var(--spacing-xl);
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(0, 217, 255, 0.2);
-  transition: all var(--transition-normal);
+  position: relative;
+  padding: var(--spacing-3xl) var(--spacing-lg);
+  background: var(--gradient-primary);
+  color: white;
+  border-radius: var(--radius-2xl);
+  text-align: center;
+  overflow: hidden;
+  margin-top: var(--spacing-2xl);
 }
 
-.defenseDiagram:hover {
-  border-color: var(--color-cyan);
-  box-shadow: var(--shadow-glow);
+.defenseDiagram::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
 }
 
 .diagramTitle {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-xl);
+  position: relative;
+  z-index: 1;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: white;
+  margin-bottom: var(--spacing-2xl);
   text-align: center;
 }
 
 .layers {
+  position: relative;
+  z-index: 1;
   display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
+  gap: var(--spacing-lg);
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .layer {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: var(--spacing-lg);
-  padding: var(--spacing-lg);
-  background: var(--bg-primary);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-md);
-  transition: all var(--transition-fast);
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xl);
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-xl);
+  transition: all var(--duration-fast) var(--ease-spring);
+  min-width: 200px;
+  text-align: center;
 }
 
 .layer:hover {
-  border-color: var(--color-cyan);
-  transform: translateY(-4px) translateX(4px);
-  box-shadow: var(--shadow-glow);
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .layerNumber {
-  width: 32px;
-  height: 32px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--gradient-primary);
+  background: white;
   border-radius: 50%;
-  color: white;
+  color: var(--color-dark-navy);
   font-weight: 700;
+  font-size: 1.25rem;
   flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .layerName {
   font-weight: 600;
-  color: var(--text-primary);
-  min-width: 180px;
+  color: white;
+  font-size: 1.125rem;
 }
 
 .layerDesc {
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.85);
   margin: 0;
   font-size: 0.875rem;
+  line-height: 1.5;
 }
 
 .simulationSection {
@@ -203,19 +220,27 @@
 
 .simulateButton {
   display: block;
-  margin: 0 auto var(--spacing-lg, 1.5rem);
-  padding: var(--spacing-sm, 0.5rem) var(--spacing-xl, 2rem);
+  margin: 0 auto var(--spacing-xl, 2rem);
+  padding: var(--spacing-md, 1rem) var(--spacing-3xl, 4rem);
   background: linear-gradient(135deg, var(--color-cyan, #00d9ff), var(--color-violet, #8338ec));
   border: none;
-  border-radius: var(--radius-md, 0.5rem);
+  border-radius: var(--radius-lg, 0.75rem);
   color: white;
-  font-weight: 600;
+  font-size: 1.125rem;
+  font-weight: 700;
   cursor: pointer;
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.4), 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: box-shadow var(--duration-fast, 150ms), transform var(--duration-fast, 150ms);
+}
+
+.simulateButton:hover:not(:disabled) {
+  box-shadow: 0 0 30px rgba(0, 217, 255, 0.6), 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
 .simulateButton:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 .validationFlow {
@@ -234,14 +259,10 @@
 }
 
 .flowLabel {
-  padding: var(--spacing-xs, 0.25rem) var(--spacing-sm, 0.5rem);
-  background: rgba(0, 217, 255, 0.1);
-  border-radius: var(--radius-sm, 0.375rem);
   font-size: 0.875rem;
 }
 
 .flowArrow {
-  color: var(--color-cyan, #00d9ff);
 }
 
 .validationResult {
@@ -290,13 +311,24 @@
     grid-template-columns: 1fr;
   }
 
-  .layer {
-    flex-direction: column;
-    text-align: center;
-    gap: var(--spacing-sm);
+  .defenseDiagram {
+    padding: var(--spacing-2xl) var(--spacing-md);
+    border-radius: var(--radius-xl);
   }
 
-  .layerName {
+  .diagramTitle {
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .layers {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  .layer {
     min-width: auto;
+    width: 100%;
+    padding: var(--spacing-lg);
   }
 }
